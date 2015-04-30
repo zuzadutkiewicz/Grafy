@@ -31,9 +31,13 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Linker>
+			<Add option="-Wl,--stack=16000000 -Wl,--heap=128000000" />
+		</Linker>
 		<Unit filename="include/GenerowanieGrafu.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/GenerowanieGrafu.cpp" />

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>    // std::random_shuffle
+#include <random>
 
 using namespace std;
 
@@ -19,13 +20,14 @@ public:
     void drukujMacierzSasJedynki();
 protected:
 private:
-    int liczbaPaczek;
-    vector< vector<int> > macierzSas;
+    int ** macierzSas;
     vector< vector<int> > listaNast;
     int rozmiarGrafu;
     void zerujMacierzSas();
     void ustawRozmiarMacierzSas();
+    void usunMacierzSas();
     void ustawRozmiarListaNast();
+    int liczbaKrawedziMacierzSas();
 
 };
 

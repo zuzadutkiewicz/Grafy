@@ -2,17 +2,17 @@
 1385320478 source:c:\users\zuza\gitrepos\grafy\algorytmygrafowe\main.cpp
 	<iostream>
 
-1430313626 source:d:\gittestrepos\zuziagit\grafy\algorytmygrafowe\main.cpp
+1430393453 source:d:\gittestrepos\zuziagit\grafy\algorytmygrafowe\main.cpp
 	<iostream>
 	<GenerowanieGrafu.h>
 
-1430314048 source:d:\gittestrepos\zuziagit\grafy\algorytmygrafowe\src\generowaniegrafu.cpp
+1430393832 source:d:\gittestrepos\zuziagit\grafy\algorytmygrafowe\src\generowaniegrafu.cpp
 	"GenerowanieGrafu.h"
-	<vector>
 
-1430314178 d:\gittestrepos\zuziagit\grafy\algorytmygrafowe\include\generowaniegrafu.h
+1430390346 d:\gittestrepos\zuziagit\grafy\algorytmygrafowe\include\generowaniegrafu.h
 	<stdlib.h>
 	<iostream>
 	<vector>
 	<algorithm>
+	<random>
 
