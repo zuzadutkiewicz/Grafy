@@ -12,6 +12,7 @@ GenerowanieGrafu::GenerowanieGrafu(int p_rozmiar)
 
 GenerowanieGrafu::~GenerowanieGrafu()
 {
+    usunMacierzSas();
 }
 
 int GenerowanieGrafu::dajRozmiarGrafu()
@@ -33,7 +34,7 @@ void GenerowanieGrafu::generujGraf()
 
     // ustalenie skoku do przeciecia grafu
     int skok = 0;
-    if(rozmiarGrafu > 10000)
+    if(rozmiarGrafu > 6000)
         skok = 150;
     if(rozmiarGrafu > 1000)
         skok = 90;

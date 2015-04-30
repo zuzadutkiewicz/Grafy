@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    GenerowanieGrafu generGraf = GenerowanieGrafu(1000);
+    GenerowanieGrafu generGraf = GenerowanieGrafu(5000);
     // generGraf.drukujMacierzSas();
     cout << "Poczatek generowania grafu" << endl;
     generGraf.generujGraf();
