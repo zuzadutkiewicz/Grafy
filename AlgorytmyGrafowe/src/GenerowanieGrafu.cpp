@@ -12,6 +12,7 @@ GenerowanieGrafu::GenerowanieGrafu(int p_rozmiar)
 
 GenerowanieGrafu::~GenerowanieGrafu()
 {
+    usunMacierzSas();
 }
 
 int GenerowanieGrafu::dajRozmiarGrafu()
@@ -33,7 +34,7 @@ void GenerowanieGrafu::generujGraf()
 
     // ustalenie skoku do przeciecia grafu
     int skok = 0;
-    if(rozmiarGrafu > 10000)
+    if(rozmiarGrafu > 6000)
         skok = 150;
     if(rozmiarGrafu > 1000)
         skok = 90;
@@ -51,8 +52,9 @@ void GenerowanieGrafu::generujGraf()
 
     cout << "wspolczynnik nasycenia poczatkowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * rozmiarGrafu)  << " %" << endl;
 
-    // uzupelnienie grafu do wspolczynnika nasycenia 50% ( dzielenie przez 4, poniewa¿ jedno poloczenie zawiera w sobie dwa - w jedna i druga strone)
-    int doUzup = (int) (rozmiarGrafu * rozmiarGrafu / 4 - liczbaKrawedziMacierzSas());
+    // uzupelnienie grafu do wspolczynnika nasycenia 50%
+    // czyli 50 % z liczby n*(n-1)/2 gdzie n to liczba wierzcholkow grafu
+    int doUzup = (int) ( (rozmiarGrafu * (rozmiarGrafu - 1) / 2) * 0.5 - liczbaKrawedziMacierzSas());
 
     uniform_int_distribution<int> distribution(0, rozmiarGrafu - 1);
     mt19937 engine;
@@ -82,7 +84,7 @@ void GenerowanieGrafu::generujGraf()
 
     }
     cout.setf( ios::showpoint );
-    cout << "wspolczynnik nasycenia koncowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * rozmiarGrafu)  << " %" << endl;
+    cout << "wspolczynnik nasycenia koncowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * (rozmiarGrafu - 1) )  << " %" << endl;
 }
 
 void GenerowanieGrafu::ustawRozmiarMacierzSas()
