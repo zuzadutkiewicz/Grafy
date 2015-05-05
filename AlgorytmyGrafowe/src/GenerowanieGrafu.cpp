@@ -13,6 +13,7 @@ GenerowanieGrafu::GenerowanieGrafu(int p_rozmiar)
 GenerowanieGrafu::~GenerowanieGrafu()
 {
     usunMacierzSas();
+    usunListaNast();
 }
 
 int GenerowanieGrafu::dajRozmiarGrafu()
@@ -22,7 +23,25 @@ int GenerowanieGrafu::dajRozmiarGrafu()
 
 void GenerowanieGrafu::generujGraf()
 {
+    generujGrafMacierzSas();
+    generujGrafListaNast();
+}
 
+void GenerowanieGrafu::generujGrafListaNast()
+{
+    cout << "genetujGrafListaNast: poczatek" << endl;
+    for(int i = 0; i < rozmiarGrafu - 1; i++)
+        for(int j = 0; j < rozmiarGrafu - 1; j++)
+        {
+            if(macierzSas[i][j] == 1)
+                listaNast[i].push_back(j);
+        }
+    cout << "genetujGrafListaNast: koniec" << endl;
+}
+
+
+void GenerowanieGrafu::generujGrafMacierzSas()
+{
     cout << "rozmiarGrafu=" << rozmiarGrafu << endl;
     for(int i = 0; i < rozmiarGrafu - 1; i++)
     {
@@ -45,12 +64,12 @@ void GenerowanieGrafu::generujGraf()
 
     for(int i = 1; i < (rozmiarGrafu/skok); i++)
     {
-        macierzSas[(int) i * skok] [(int) i * skok + 1] = 0;
-        macierzSas[(int) i * skok] [0]                  = 1;
-        macierzSas[0]              [(int) i * skok + 1] = 1;
+        macierzSas[i * skok][i * skok + 1] = 0;
+        macierzSas[i * skok][0]            = 1;
+        macierzSas[0]       [i * skok + 1] = 1;
     }
 
-    cout << "wspolczynnik nasycenia poczatkowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * rozmiarGrafu)  << " %" << endl;
+    cout << "MacierzSas: wspolczynnik nasycenia poczatkowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * rozmiarGrafu)  << " %" << endl;
 
     // uzupelnienie grafu do wspolczynnika nasycenia 50%
     // czyli 50 % z liczby n*(n-1)/2 gdzie n to liczba wierzcholkow grafu
@@ -84,15 +103,16 @@ void GenerowanieGrafu::generujGraf()
 
     }
     cout.setf( ios::showpoint );
-    cout << "wspolczynnik nasycenia koncowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * (rozmiarGrafu - 1) )  << " %" << endl;
+    cout << "MacierzSas: wspolczynnik nasycenia koncowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * (rozmiarGrafu - 1) )  << " %" << endl;
+
 }
 
 void GenerowanieGrafu::ustawRozmiarMacierzSas()
 {
-    macierzSas = new int*[rozmiarGrafu];
+    macierzSas = new bool*[rozmiarGrafu];
     for(int i = 0; i < rozmiarGrafu; ++i)
     {
-        macierzSas[i] = new int[rozmiarGrafu];
+        macierzSas[i] = new bool[rozmiarGrafu];
     }
 
 }
@@ -114,10 +134,13 @@ void GenerowanieGrafu::usunMacierzSas()
 
 }
 
+void GenerowanieGrafu::usunListaNast()
+{
+    // do nothing
+}
 void GenerowanieGrafu::ustawRozmiarListaNast()
 {
     listaNast.resize(rozmiarGrafu);
-
 }
 
 void GenerowanieGrafu::zerujMacierzSas()
@@ -163,12 +186,27 @@ void GenerowanieGrafu::drukujMacierzSasJedynki()
 
 }
 
+
+void GenerowanieGrafu::drukujListaNast()
+{
+        for(int i = 0; i < listaNast.size(); i++)
+        {
+
+            cout << "listaNast[" << i << "]={";
+            for(int j = 0; j < listaNast[i].size(); j++)
+                cout << listaNast[i][j] << " ";
+        cout << "}" << endl;
+        }
+
+
+}
+
 int GenerowanieGrafu::liczbaKrawedziMacierzSas()
 {
     int liczbaKrawedzi = 0;
     for(int i = 0; i < rozmiarGrafu; i++)
         for(int j = 0; j < rozmiarGrafu; j++)
-                liczbaKrawedzi = liczbaKrawedzi + macierzSas[i][j];
+            liczbaKrawedzi = liczbaKrawedzi + macierzSas[i][j];
 
     return liczbaKrawedzi;
 }

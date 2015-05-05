@@ -16,18 +16,22 @@ public:
     virtual ~GenerowanieGrafu();
     int dajRozmiarGrafu();
     void drukujMacierzSas();
+    void drukujListaNast();
     void generujGraf();
     void drukujMacierzSasJedynki();
 protected:
 private:
-    int ** macierzSas;
+    bool ** macierzSas;
     vector< vector<int> > listaNast;
     int rozmiarGrafu;
     void zerujMacierzSas();
     void ustawRozmiarMacierzSas();
     void usunMacierzSas();
+    void usunListaNast();
     void ustawRozmiarListaNast();
     int liczbaKrawedziMacierzSas();
+    void generujGrafMacierzSas();
+    void generujGrafListaNast();
 
 };
 
