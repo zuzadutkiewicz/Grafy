@@ -9,6 +9,7 @@ int main()
     cout << "Poczatek generowania grafu" << endl;
     generGraf.generujGraf();
     cout << "Koniec generowania grafu " << endl;
+    generGraf.drukujMacierzSasJedynki();
     // generGraf.drukujMacierzSasJedynki();
     // generGraf.drukujListaNast();
 
