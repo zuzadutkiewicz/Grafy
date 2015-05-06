@@ -32,6 +32,7 @@ private:
     int liczbaKrawedziMacierzSas();
     void generujGrafMacierzSas();
     void generujGrafListaNast();
+    void nasycMacierzSas();
 
 };
 

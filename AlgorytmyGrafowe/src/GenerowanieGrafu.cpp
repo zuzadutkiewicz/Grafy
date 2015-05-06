@@ -54,15 +54,18 @@ void GenerowanieGrafu::generujGrafMacierzSas()
 
     // ustalenie skoku do przeciecia grafu
     int skok = 0;
-    if(rozmiarGrafu > 6000)
+    if(rozmiarGrafu > 20000)
+        skok = 400;
+    else if(rozmiarGrafu > 6000)
         skok = 150;
-    if(rozmiarGrafu > 1000)
+    else if(rozmiarGrafu > 1000)
         skok = 90;
-    if(rozmiarGrafu > 50)
+    else if(rozmiarGrafu > 50)
         skok = 10;
     else
         skok = -1;
 
+    // potnij graf
     for(int i = 1; i < (rozmiarGrafu/skok); i++)
     {
         macierzSas[i * skok][i * skok + 1] = 0;
@@ -70,7 +73,14 @@ void GenerowanieGrafu::generujGrafMacierzSas()
         macierzSas[0]       [i * skok + 1] = 1;
     }
 
-    cout << "MacierzSas: wspolczynnik nasycenia poczatkowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * rozmiarGrafu)  << " %" << endl;
+    nasycMacierzSas();
+}
+
+
+void GenerowanieGrafu::nasycMacierzSas()
+{
+
+        cout << "MacierzSas: wspolczynnik nasycenia poczatkowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * rozmiarGrafu)  << " %" << endl;
 
     // uzupelnienie grafu do wspolczynnika nasycenia 50%
     // czyli 50 % z liczby n*(n-1)/2 gdzie n to liczba wierzcholkow grafu
@@ -106,7 +116,9 @@ void GenerowanieGrafu::generujGrafMacierzSas()
     cout.setf( ios::showpoint );
     cout << "MacierzSas: wspolczynnik nasycenia koncowy: " << (double) ((double)liczbaKrawedziMacierzSas() * 2 * 100) / (rozmiarGrafu * (rozmiarGrafu - 1) )  << " %" << endl;
 
+
 }
+
 
 void GenerowanieGrafu::ustawRozmiarMacierzSas()
 {
@@ -139,6 +151,8 @@ void GenerowanieGrafu::usunListaNast()
 {
     // do nothing
 }
+
+
 void GenerowanieGrafu::ustawRozmiarListaNast()
 {
     listaNast.resize(rozmiarGrafu);
@@ -190,11 +204,11 @@ void GenerowanieGrafu::drukujMacierzSasJedynki()
 
 void GenerowanieGrafu::drukujListaNast()
 {
-        for(int i = 0; i < listaNast.size(); i++)
+        for(unsigned int i = 0; i < listaNast.size(); i++)
         {
 
             cout << "listaNast[" << i << "]={";
-            for(int j = 0; j < listaNast[i].size(); j++)
+            for(unsigned int j = 0; j < listaNast[i].size(); j++)
                 cout << listaNast[i][j] << " ";
         cout << "}" << endl;
         }
